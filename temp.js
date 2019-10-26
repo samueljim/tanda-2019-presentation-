@@ -18,7 +18,7 @@ class App extends Component {
         });
       });
       // this.setState({ msg: Date.now() }
-    }, 100);
+    }, 400);
     // console.log(this.state.msg);
   }
 
