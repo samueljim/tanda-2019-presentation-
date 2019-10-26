@@ -30,6 +30,7 @@ async function connectToDatabase(uri) {
 module.exports = async (req, res) => {
   // Get a database connection, cached or otherwise,
   // using the connection string environment variable as the argument
+  console.log(process.env.MONGO_URL);
   var db = await connectToDatabase(process.env.MONGO_URL);
 
   // Select the "users" collection from the database
