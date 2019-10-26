@@ -15,7 +15,8 @@ app.post("*", (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.status(200).send("You are meant to send a post request Moira");
+  // res.status(200).send({ data: "You are meant to send a post request Moira" });
+  res.status(200).send({ data: Date.now() });
 });
 
 module.exports = app;

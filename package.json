@@ -1,12 +1,12 @@
 {
   "scripts": {
-    "start": "mdx-deck demo-advanced.mdx",
+    "start": "mdx-deck advanced.mdx",
     "build": "npm run now-build",
-    "build:presentation": "mdx-deck build demo-advanced.mdx --no-html",
+    "build:presentation": "mdx-deck build advanced.mdx --no-html",
     "build:images": "cp -r images dist/",
     "build:assets": "cp -r snippets dist/",
     "now-build": "npm run build:presentation && npm run build:images && npm run build:assets",
-    "now-dev": "mdx-deck -p $PORT demo-advanced.mdx"
+    "now-dev": "mdx-deck -p $PORT advanced.mdx"
   },
   "devDependencies": {
     "ajv": "6.8.1",
@@ -17,6 +17,8 @@
   "dependencies": {
     "@mdx-deck/themes": "^3.0.8",
     "body-parser": "^1.19.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mdx.macro": "^0.2.9",
+    "react": "^16.11.0"
   }
 }
