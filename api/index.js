@@ -45,8 +45,10 @@ app.all("*", async (req, res) => {
   collection.updateOne(
     { name: "samuel" },
     {
-      date: new Date(),
-      happy: happy
+      $set: {
+        date: new Date(),
+        happy: happy
+      }
     },
     (err, data) => {
       if (err) {
