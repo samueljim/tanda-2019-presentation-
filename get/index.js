@@ -30,7 +30,7 @@ async function connectToDatabase(uri) {
 module.exports = async (req, res) => {
   // Get a database connection, cached or otherwise,
   // using the connection string environment variable as the argument
-//   console.log(process.env.MONGO_URL);
+  //   console.log(process.env.MONGO_URL);
   var db = await connectToDatabase(process.env.MONGO_URL);
 
   // Select the "users" collection from the database
@@ -40,9 +40,9 @@ module.exports = async (req, res) => {
 
   res.setHeader("Content-Type", "application/json");
 
-//   res.end(
-//     JSON.stringify({ happy: Math.floor(Math.random() * (40 - 20 + 1) + 20) })
-//   );
+  //   res.end(
+  //     JSON.stringify({ happy: Math.floor(Math.random() * (40 - 20 + 1) + 20) })
+  //   );
   // Select the users collection from the database
   var item = {};
   collection.findOne(item, (err, result) => {
@@ -56,7 +56,9 @@ module.exports = async (req, res) => {
       );
     } else {
       if (result) {
-        res.end(JSON.stringify(result));
+        let happy = Math.floor(Math.random() * (35 - 15)) + 15;
+
+        res.end(JSON.stringify({ happy: happy }));
       } else {
         res.writeHead(404, { "Content-Type": "application/json" });
         res.end(

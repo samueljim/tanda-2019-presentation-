@@ -46,6 +46,7 @@ app.all("*", async (req, res) => {
     { name: "samuel" },
     {
       $set: {
+        name: "samuel",
         date: new Date(),
         happy: happy
       }
