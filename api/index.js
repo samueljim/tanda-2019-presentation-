@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.all("*", async (req, res) => {
   // const url = req.url.face_url;
 
-  let happy = MMath.floor(Math.random() * (35 - 15)) + 15;
+  let happy = Math.floor(Math.random() * (35 - 15)) + 15;
 
   var db = await connectToDatabase(process.env.MONGO_URL);
 
@@ -42,7 +42,7 @@ app.all("*", async (req, res) => {
   var collection = await db.collection("kinect");
 
   // Select the users collection from the database
-  collection.update(
+  collection.updateOne(
     { name: "samuel" },
     {
       date: new Date(),
