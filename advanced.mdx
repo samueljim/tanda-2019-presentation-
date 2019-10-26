@@ -9,6 +9,7 @@ import { CodeSurfer } from "mdx-deck-code-surfer"; // https://elijahmanor.com/co
 # Connected Workplace
 
 <Appear>
+  <h3>More like</h3>
   <h1>Kinected Workplace</h1>
 </Appear>
 <Head>
@@ -23,19 +24,39 @@ import { CodeSurfer } from "mdx-deck-code-surfer"; // https://elijahmanor.com/co
 
 ---
 
-# What will we need?
+## The problem
+
+<ul style={{ listStyle: "none" }}>
+  <Appear>
+    <li>Team temp is borken</li>
+    <li>People lie about how they feel</li>
+    <li>It's important to know how people are really doing</li>
+  </Appear>
+</ul>
+---
+# What will we need to fix this?
 
 <ul style={{ listStyle: "none" }}>
   <Appear>
     <li>A $3 Xbox Kinect</li>
-    <li>Tanda api</li>
+    <li>Serverless lambda</li>
     <li>Amazon credits for facial recognition</li>
   </Appear>
 </ul>
 
 ```notes
-For this demo, there are three things that we are going to need.
+lambda is not aws
 ```
+
+---
+
+## Face detection
+
+## <img src="images/us.png" alt="drawing" width="100%" />
+
+---
+
+# Face to fahrenheit conversion
 
 ---
 
@@ -45,68 +66,13 @@ For this demo, there are three things that we are going to need.
 
 ---
 
-<CodeSurfer
-  code={require("raw-loader!./snippets/example-nowconfiguration.snippet")}
-  title="ZEIT Now - now.json"
-  showNumbers
-  steps={[
-    {}, // First step should be an overview of the snippet
-    { lines: [2], notes: "Specify version 2" },
-    { lines: [3], notes: "Give our project a name" },
-    {
-      range: [4, 6],
-      notes: "Use @now/static-build when serving static content"
-    },
-    {}
-  ]}
-/>
-
----
-
-# One more thing
-
-Add a `now-build` script to `package.json` which
-
-<ul style={{ listStyle: "none" }}>
-  <Appear>
-    <li>Builds a static site containing our presentation</li>
-    <li>Recursively copies images to our new build directory</li>
-    <li>Recursively copies code snippets to our new build directory</li>
-  </Appear>
-</ul>
-
----
-
-<CodeSurfer
-  code={require("raw-loader!./snippets/example-packagejson.snippet")}
-  title="ZEIT Now - package.json"
-  showNumbers
-  steps={[
-    {} // First step should be an overview of the snippet
-  ]}
-/>
-
----
-
-# Deploy to ZEIT Now
-
-Simply type [`now`](https://zeit.co/docs) and deploy your presentation...
-
----
-
-# Demo
-
-export default Invert;
-
----
-
 # Thank you
 
 ### Sam Henry
 
-### Rob Geroge
+### Robert Geroge
 
-### Rob Geroge
+### Moria Quinn
 
 ---
 

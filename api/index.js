@@ -23,14 +23,13 @@ app.get("*", (req, res) => {
 });
 
 function AnonLog() {
-    
   // Configure the credentials provider to use your identity pool
-  AWS.config.region = 'us-east'; // Region
+  AWS.config.region = "us-east"; // Region
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'us-east-1:ff8c987b-fd18-4e05-90f2-546ec9548431',
+    IdentityPoolId: "us-east-1:ff8c987b-fd18-4e05-90f2-546ec9548431"
   });
   // Make the call to obtain credentials
-  AWS.config.credentials.get(function () {
+  AWS.config.credentials.get(function() {
     // Credentials will be available when this function is called.
     var accessKeyId = AWS.config.credentials.accessKeyId;
     var secretAccessKey = AWS.config.credentials.secretAccessKey;
@@ -45,15 +44,14 @@ function ReadFaces(imageData) {
     Image: {
       Bytes: imageData
     },
-    Attributes: [
-      'ALL',
-    ]
+    Attributes: ["ALL"]
   };
-  rekognition.detectFaces(params, function (err, data) {
-    if (err) console.log(err, err.stack); // an error occurred
+  rekognition.detectFaces(params, function(err, data) {
+    if (err) console.log(err, err.stack);
+    // an error occurred
     else {
       for (var i = 0; i < data.FaceDetails.length; i++) {
-        happy = data.FaceDetails[i].Emotion.Type("HAPPY")
+        happy = data.FaceDetails[i].Emotion.Type("HAPPY");
       }
     }
   });
