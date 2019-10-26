@@ -18,11 +18,13 @@ class App extends Component {
         });
       });
       // this.setState({ msg: Date.now() }
-    }, 1000);
+    }, 100);
     // console.log(this.state.msg);
   }
 
-  var;
+//   function randomIntFromInterval(min, max) { // min and max included 
+//     return Math.floor(Math.random() * (max - min + 1) + min);
+//   }
 
   render() {
     return (

@@ -1,60 +1,62 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+// Import Dependencies
+const MongoClient = require("mongodb").MongoClient;
 
-var happy = 0;
+// Create cached connection variable
+let cachedDb = null;
+
+// A function for connecting to MongoDB,
+// taking a single paramater of the connection string
+async function connectToDatabase(uri) {
+  // If the database connection is cached,
+  // use it instead of creating a new connection
+  if (cachedDb) {
+    return cachedDb;
+  }
+
+  // If no connection is cached, create a new one
+  const client = await MongoClient.connect(uri, { useNewUrlParser: true });
+
+  // Select the database through the connection,
+  // using the database path of the connection string
+  const db = await client.db("kinect");
+
+  // Cache the database connection and return the connection
+  cachedDb = db;
+  return db;
+}
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post("*", (req, res) => {
-  console.log(req.body);
+app.all("*", async (req, res) => {
+  const url = req.url.face_url;
 
-  const error = false;
-  if (error) {
-    return res.status(500).send(error);
+  function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
   }
-  return res.status(200).send(req.body);
-});
 
-app.get("*", (req, res) => {
-  // res.status(200).send({ data: "You are meant to send a post request Moira" });
-  res.status(200).send({ happy });
-});
+  let happy = getRandomArbitrary(15, 35);
 
-function AnonLog() {
-  // Configure the credentials provider to use your identity pool
-  AWS.config.region = "us-east"; // Region
-  AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: "us-east-1:ff8c987b-fd18-4e05-90f2-546ec9548431"
-  });
-  // Make the call to obtain credentials
-  AWS.config.credentials.get(function() {
-    // Credentials will be available when this function is called.
-    var accessKeyId = AWS.config.credentials.accessKeyId;
-    var secretAccessKey = AWS.config.credentials.secretAccessKey;
-    var sessionToken = AWS.config.credentials.sessionToken;
-  });
-}
+  var db = await connectToDatabase(process.env.MONGO_URL);
 
-function ReadFaces(imageData) {
-  AWS.region = "us-east";
-  var rekognition = new AWS.Rekognition();
-  var params = {
-    Image: {
-      Bytes: imageData
+  // Select the "users" collection from the database
+  var collection = await db.collection("kinect");
+
+  // Select the users collection from the database
+  collection.update(
+    { name: "samuel" },
+    {
+      date: new Date(),
+      happy: happy
     },
-    Attributes: ["ALL"]
-  };
-  rekognition.detectFaces(params, function(err, data) {
-    if (err) console.log(err, err.stack);
-    // an error occurred
-    else {
-      for (var i = 0; i < data.FaceDetails.length; i++) {
-        happy = data.FaceDetails[i].Emotion.Type("HAPPY");
+    (err, data) => {
+      if (err) {
+        res.status(400).send({ happy });
       }
+      res.status(200).send({ happy });
     }
-  });
-}
-
-module.exports = app;
+  );
+});
