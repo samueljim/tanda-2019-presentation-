@@ -56,9 +56,9 @@ module.exports = async (req, res) => {
       );
     } else {
       if (result) {
-        let happy = Math.floor(Math.random() * (35 - 15)) + 15;
+        // let happy = Math.floor(Math.random() * (35 - 15)) + 15;
 
-        res.end(JSON.stringify({ happy: happy }));
+        res.end(JSON.stringify(result));
       } else {
         res.writeHead(404, { "Content-Type": "application/json" });
         res.end(
