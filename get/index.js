@@ -30,17 +30,16 @@ async function connectToDatabase(uri) {
 module.exports = async (req, res) => {
   // Get a database connection, cached or otherwise,
   // using the connection string environment variable as the argument
-  var db = await connectToDatabase(
-    process.env.MONGO_URL
-  );
+  var db = await connectToDatabase(process.env.MONGO_URL);
 
   // Select the "users" collection from the database
   var collection = await db.collection("kinect");
 
-//   console.log(query);
+  //   console.log(query);
 
   res.setHeader("Content-Type", "application/json");
-//   res.end(JSON.stringify({ happy: Date.now() }));
+
+  //   res.end(JSON.stringify({ happy: Date.now() }));
   // Select the users collection from the database
   var item = {};
   collection.findOne(item, (err, result) => {
