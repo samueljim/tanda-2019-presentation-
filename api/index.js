@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.all("*", async (req, res) => {
   // const url = req.url.face_url;
 
-  let happy = Math.random() * (35 - 15) + 15;
+  let happy = MMath.floor(Math.random() * (35 - 15)) + 15;
 
   var db = await connectToDatabase(process.env.MONGO_URL);
 
