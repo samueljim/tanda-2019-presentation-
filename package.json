@@ -9,7 +9,7 @@
     "now-dev": "mdx-deck -p $PORT advanced.mdx"
   },
   "devDependencies": {
-    "ajv": "6.8.1",
+    "ajv": "6.12.3",
     "mdx-deck": "1.8.2",
     "mdx-deck-code-surfer": "0.5.5",
     "raw-loader": "1.0.0"
